@@ -35,7 +35,6 @@ export default {
           return res.json()
         })
         .then((value) => {
-          console.log(value)
           this.articles = value
         })
         .catch((error) => {
@@ -53,7 +52,6 @@ export default {
         })
         .then((value) => {
           this.user = value
-          console.log(value)
         })
     },
   },
