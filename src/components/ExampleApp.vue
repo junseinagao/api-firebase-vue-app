@@ -2,8 +2,8 @@
   <div>
     <h1>Qiita APIとFirestoreを使った実践的なアプリ</h1>
     <div>
+      <div>検索ワード<input type="text" v-model="query" /></div>
       <button v-on:click="getQiitaArticleTitles">記事を取得する</button>
-      <div>取得するページ<input type="number" v-model="page" /></div>
       <div v-for="(article, index) in articles" v-bind:key="index">
         {{ index }} : {{ article.title }}
       </div>
@@ -18,15 +18,13 @@ export default {
   data() {
     return {
       articles: [],
-      page: 1,
+      query: "",
     }
   },
   methods: {
     getQiitaArticleTitles: function () {
-      if (this.page > 0) {
-        fetch(
-          `https://qiita.com/api/v2/items?page=${this.page}&per_page=10&query=tag:Vue.js`
-        )
+      if (this.query) {
+        fetch(`https://qiita.com/api/v2/items?query=${this.query}`)
           .then((res) => {
             return res.json()
           })
