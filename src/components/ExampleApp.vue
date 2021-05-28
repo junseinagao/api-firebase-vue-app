@@ -20,16 +20,19 @@ export default {
     }
   },
   methods: {
-    getQiitaArticleTitles: async function () {
-      const result = await fetch(
+    getQiitaArticleTitles: function () {
+      fetch(
         `https://qiita.com/api/v2/items?page=1&per_page=10&query=tag:Vue.js`
-      ).then((res) => {
-        return res.json()
-      })
-      for (let i = 0; i < result.length; i++) {
-        this.articles.push(result[i])
-        await firebase.firestore().collection("articles").add(result[i])
-      }
+      )
+        .then((res) => {
+          return res.json()
+        })
+        .then((data) => {
+          for (let i = 0; i < data.length; i++) {
+            this.articles.push(data[i])
+            firebase.firestore().collection("articles").add(data[i])
+          }
+        })
     },
   },
   created() {
@@ -38,9 +41,12 @@ export default {
       .collection("articles")
       .get()
       .then((snapshot) => {
-        snapshot.docs.forEach((doc) => {
-          this.articles.push(doc.data())
-        })
+        return snapshot.docs
+      })
+      .then((docs) => {
+        for (let i = 0; i < docs.length; i++) {
+          this.articles.push(docs[i].data())
+        }
       })
   },
 }
