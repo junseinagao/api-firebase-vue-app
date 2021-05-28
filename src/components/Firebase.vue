@@ -21,23 +21,13 @@ export default {
   },
   methods: {
     postMessage() {
+      const data = { text: "こんにちは、メッセージの本文です。" }
       firebase
         .firestore()
         .collection("messages")
-        .add({
-          text: "こんにちは、メッセージの本文です。",
-        })
-        .then((doc) => {
-          firebase.firestore().collection("messages").doc(doc.id).set(
-            {
-              id: doc.id,
-            },
-            { merge: true }
-          )
-          this.messages.push({
-            id: doc.id,
-            text: "こんにちは、メッセージの本文です。",
-          })
+        .add(data)
+        .then(() => {
+          this.messages.push(data)
         })
     },
   },
@@ -47,9 +37,9 @@ export default {
       .collection("messages")
       .get()
       .then((snapshot) => {
-        snapshot.docs.forEach((doc) => {
-          this.messages.push(doc.data())
-        })
+        for (let i = 0; i < snapshot.docs.length; i++) {
+          this.messages.push(snapshot.docs[i].data())
+        }
       })
   },
 }
