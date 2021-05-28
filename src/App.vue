@@ -1,13 +1,13 @@
 <template>
-  <div id="app"><GithubAPI /></div>
+  <div id="app"><QiitaAPI /></div>
 </template>
 
 <script>
-import GithubAPI from "@/components/GithubAPI.vue"
+import QiitaAPI from "@/components/QiitaAPI.vue"
 export default {
   name: "App",
   components: {
-    GithubAPI,
+    QiitaAPI,
   },
 }
 </script>
