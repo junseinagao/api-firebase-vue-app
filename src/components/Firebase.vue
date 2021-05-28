@@ -1,8 +1,11 @@
 <template>
-  <div class="app">
-    <button v-on:click="postMessage">メッセージをFirestoreに保存する</button>
-    <div v-for="(message, index) in messages" v-bind:key="index">
-      {{ message }}
+  <div>
+    <h1>Firestoreを使う</h1>
+    <div>
+      <button v-on:click="postMessage">メッセージをFirestoreに保存する</button>
+      <div v-for="(message, index) in messages" v-bind:key="index">
+        {{ message }}
+      </div>
     </div>
   </div>
 </template>

@@ -1,5 +1,6 @@
 <template>
   <div>
+    <h1>Qiita APIを使う</h1>
     <div>
       <h2>Qiitaの記事</h2>
       <button v-on:click="getQiitaArticle">記事を取得する</button>

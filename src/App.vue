@@ -1,5 +1,9 @@
 <template>
-  <div id="app"><QiitaAPI /><Firebase></Firebase><ExampleApp></ExampleApp></div>
+  <div id="app">
+    <div><QiitaAPI /></div>
+    <div><Firebase /></div>
+    <div><ExampleApp /></div>
+  </div>
 </template>
 
 <script>

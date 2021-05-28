@@ -1,7 +1,7 @@
 <template>
   <div>
+    <h1>Qiita APIとFirestoreを使った実践的なアプリ</h1>
     <div>
-      <h2>QiitaをFirestoreに保存する</h2>
       <button v-on:click="getQiitaArticleTitles">記事を取得する</button>
       <div v-for="(article, index) in articles" v-bind:key="index">
         {{ index }} : {{ article.title }}
