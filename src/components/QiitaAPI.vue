@@ -5,7 +5,14 @@
       <h2>Qiitaの記事</h2>
       <button v-on:click="getQiitaArticle">記事を取得する</button>
       <div v-for="(article, index) in articles" v-bind:key="index">
-        {{ index }} : {{ article }}
+        {{ index }} : {{ article.title }}
+      </div>
+    </div>
+    <div>
+      <h2>QiitaのユーザーID</h2>
+      <button v-on:click="getQiitaUser">ユーザーを取得する</button>
+      <div>
+        {{ user.id }}
       </div>
     </div>
   </div>
@@ -21,7 +28,9 @@ export default {
   },
   methods: {
     getQiitaArticle: function () {
-      fetch(`https://qiita.com/api/v2/items`)
+      fetch(
+        `https://qiita.com/api/v2/items?page=1&per_page=10&query=tag:Vue.js`
+      )
         .then((res) => {
           return res.json()
         })
@@ -30,6 +39,19 @@ export default {
         })
         .catch((error) => {
           console.error(error)
+        })
+    },
+    getQiitaUser: function () {
+      fetch(`https://qiita.com/api/v2/authenticated_user`, {
+        headers: {
+          Authorization: "Bearer " + "アクセストークン",
+        },
+      })
+        .then((res) => {
+          return res.json()
+        })
+        .then((value) => {
+          this.user = value
         })
     },
   },
