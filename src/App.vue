@@ -1,20 +1,20 @@
 <template>
   <div id="app">
     <div><QiitaAPI /></div>
-    <div><Firebase /></div>
+    <div><FirebaseApp /></div>
     <div><ExampleApp /></div>
   </div>
 </template>
 
 <script>
 import QiitaAPI from "@/components/QiitaAPI.vue"
-import Firebase from "@/components/Firebase.vue"
+import FirebaseApp from "@/components/FirebaseApp.vue"
 import ExampleApp from "@/components/ExampleApp.vue"
 export default {
   name: "App",
   components: {
     QiitaAPI,
-    Firebase,
+    FirebaseApp,
     ExampleApp,
   },
 }
